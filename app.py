@@ -1,13 +1,14 @@
 from flask import Flask, request, jsonify
-from googletrans import Translator
-from googletrans import LANGUAGES 
+from deep_translator import GoogleTranslator
 import os
 
 app = Flask(__name__)
 
-translator = Translator()
-
-supported_languages = LANGUAGES  
+supported_languages = {
+    "en": "English",
+    "es": "Spanish",
+    "pt": "Portuguese",
+}
 
 @app.route('/translate', methods=['POST'])
 def translate_text():
@@ -22,9 +23,11 @@ def translate_text():
         return jsonify({"error": "Idioma não suportado"}), 400
 
     try:
-        translation = translator.translate(text, dest=target_lang)
-        return jsonify({"translated_text": translation.text}), 200
+        translation = GoogleTranslator(source='auto', target=target_lang).translate(text)
+        print("Texto traduzido:", translation)
+        return jsonify({"translated_text": translation}), 200
     except Exception as e:
+        print("Erro na tradução:", e)
         return jsonify({"error": str(e)}), 500
 
 @app.route('/languages', methods=['GET'])
@@ -34,4 +37,3 @@ def get_languages():
 if __name__ == '__main__':
     port = int(os.getenv("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=True)
-
