@@ -3,7 +3,7 @@
 
 # 🌐 API de Tradução
 
-Bem-vindo à API de Tradução! Esta API permite traduzir textos para diversos idiomas e consultar a lista de idiomas suportados. Desenvolvida com Flask, ela usa a biblioteca `googletrans` para processar traduções.
+Bem-vindo à API de Tradução! Esta API permite traduzir textos para diversos idiomas e consultar a lista de idiomas suportados. Desenvolvida com Flask, ela usa a biblioteca `deep-translator` para processar traduções.
 
 ## ✨ Funcionalidades
 
@@ -109,7 +109,7 @@ GET /languages
 
 1. Instale as dependências:
    ```bash
-   pip install flask googletrans==4.0.0-rc1
+   pip install flask deep-translator
    ```
 2. Execute o servidor:
    ```bash
@@ -140,6 +140,6 @@ curl http://localhost:5000/languages
 
 ## 📝 Observações
 
-Esta API usa a biblioteca `googletrans`, que depende do serviço do Google Translate. Em caso de instabilidade no serviço, pode haver erros no processo de tradução.
+Esta API usa a biblioteca `deep-translator`, que depende do serviço do Google Translate. Em caso de instabilidade no serviço, pode haver erros no processo de tradução.
 
 ---
